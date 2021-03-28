@@ -1,0 +1,36 @@
+{
+  "name": "Conta",
+  "plural": "Contas",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": ["create", "find"]
+    }
+  },
+  "properties": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "valorOriginal": {
+      "type": "number",
+      "required": true
+    },
+    "dataVencimento": {
+      "type": "date",
+      "required": true
+    },
+    "dataPagamento": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

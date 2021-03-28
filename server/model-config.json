@@ -1,6 +1,16 @@
 {
   "_meta": {
     "sources": ["loopback/common/models", "loopback/server/models", "../common/models", "./models"],
-    "mixins": ["loopback/common/mixins", "loopback/server/mixins", "../common/mixins", "./mixins"]
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins",
+      "../node_modules/loopback-setup-remote-methods-mixin"
+    ]
+  },
+  "Conta": {
+    "dataSource": "db",
+    "public": true
   }
 }
