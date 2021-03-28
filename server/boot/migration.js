@@ -1,15 +1,18 @@
 'use strict';
 
-module.exports = (app, cb) => {
-  const tables = ['Conta', 'Atraso'];
+const atrasos = require('./atrasos.json');
+
+module.exports = async (app) => {
+  const { Atraso } = app.models;
+  const tables = ['Atraso', 'Conta'];
 
   console.log('\x1b[35m\n%s\n\x1b[0m', 'Atualizando o banco de dados...');
 
-  app.dataSources.db.autoupdate(tables, (err) => {
+  await app.dataSources.db.autoupdate(tables, (err) => {
     if (err) {
       throw err;
     }
   });
 
-  process.nextTick(cb);
+  await Atraso.findOrCreate({}, atrasos);
 };

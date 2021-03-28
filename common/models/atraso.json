@@ -8,10 +8,15 @@
   },
   "mixins": {
     "SetupRemoteMethods": {
-      "disableAllExcept": ["create", "find"]
+      "disableAllExcept": ["find"]
     }
   },
   "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
     "faixaAtraso": {
       "type": ["number"],
       "required": true

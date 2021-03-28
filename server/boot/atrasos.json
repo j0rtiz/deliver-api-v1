@@ -1,0 +1,20 @@
+[
+  {
+    "faixaAtraso": [1, 3],
+    "porcentagemMulta": 2,
+    "porcentagemJurosDia": 0.1,
+    "id": 1
+  },
+  {
+    "faixaAtraso": [4, 5],
+    "porcentagemMulta": 3,
+    "porcentagemJurosDia": 0.2,
+    "id": 2
+  },
+  {
+    "faixaAtraso": [6],
+    "porcentagemMulta": 5,
+    "porcentagemJurosDia": 0.3,
+    "id": 3
+  }
+]
