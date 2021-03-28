@@ -13,5 +13,9 @@
   "Conta": {
     "dataSource": "db",
     "public": true
+  },
+  "Atraso": {
+    "dataSource": "db",
+    "public": true
   }
 }

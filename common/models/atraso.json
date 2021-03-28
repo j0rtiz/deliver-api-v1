@@ -1,0 +1,42 @@
+{
+  "name": "Atraso",
+  "plural": "Atrasos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": ["create", "find"]
+    }
+  },
+  "properties": {
+    "diasAtraso": {
+      "type": ["number"],
+      "required": true
+    },
+    "porcentagemMulta": {
+      "type": "number",
+      "required": true,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
+    },
+    "porcentagemJurosDia": {
+      "type": "number",
+      "required": true,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
