@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = (Conta) => Conta.observe('before save', async (ctx) => verificarAtraso(ctx));
+module.exports = (Conta) => {
+  Conta.observe('before save', async (ctx) => verificarAtraso(ctx));
+  Conta.valorCorrigido = async (conta) => conta.ValorCorrigido;
+  Conta.diasAtraso = async (conta) => conta.DiasAtraso;
+};
 
 async function verificarAtraso(ctx) {
   const conta = ctx.instance || ctx.data;
@@ -10,8 +14,8 @@ async function verificarAtraso(ctx) {
   const diasAtraso = Math.ceil(Math.abs((dataVencimento - dataPagamento) / dia));
 
   if (diasAtraso > 0) {
-    conta.valorCorrigido = await calcularValor(diasAtraso, valorOriginal);
-    conta.diasAtraso = diasAtraso;
+    conta.ValorCorrigido = await calcularValor(diasAtraso, valorOriginal);
+    conta.DiasAtraso = diasAtraso;
   }
 }
 

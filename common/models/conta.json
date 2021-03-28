@@ -9,6 +9,12 @@
   "mixins": {
     "SetupRemoteMethods": {
       "disableAllExcept": ["create", "find"]
+    },
+    "Computed": {
+      "properties": {
+        "valorCorrigido": "valorCorrigido",
+        "diasAtraso": "diasAtraso"
+      }
     }
   },
   "properties": {
@@ -25,7 +31,7 @@
         "dataScale": 2
       }
     },
-    "valorCorrigido": {
+    "ValorCorrigido": {
       "type": "number",
       "required": false,
       "default": null,
@@ -43,12 +49,13 @@
       "type": "date",
       "required": true
     },
-    "diasAtraso": {
+    "DiasAtraso": {
       "type": "number",
       "required": false,
       "default": null
     }
   },
+  "hidden": ["ValorCorrigido", "DiasAtraso"],
   "validations": [],
   "relations": {},
   "acls": [],
