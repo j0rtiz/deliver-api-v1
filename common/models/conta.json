@@ -13,8 +13,7 @@
     "Computed": {
       "properties": {
         "valorCorrigido": "valorCorrigido",
-        "diasAtraso": "diasAtraso",
-        "regra": "regra"
+        "diasAtraso": "diasAtraso"
       }
     }
   },

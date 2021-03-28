@@ -4,7 +4,6 @@ module.exports = (Conta) => {
   Conta.observe('before save', async (ctx) => verificarAtraso(ctx));
   Conta.valorCorrigido = async (conta) => conta.ValorCorrigido;
   Conta.diasAtraso = async (conta) => conta.DiasAtraso;
-  Conta.regra = async (conta) => conta.Regra;
 };
 
 async function verificarAtraso(ctx) {
