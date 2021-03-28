@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (app, cb) => {
-  const tables = ['Conta'];
+  const tables = ['Conta', 'Atraso'];
 
   console.log('\x1b[35m\n%s\n\x1b[0m', 'Atualizando o banco de dados...');
 

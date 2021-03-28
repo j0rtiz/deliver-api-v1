@@ -12,7 +12,7 @@
     }
   },
   "properties": {
-    "diasAtraso": {
+    "faixaAtraso": {
       "type": ["number"],
       "required": true
     },
@@ -21,8 +21,8 @@
       "required": true,
       "postgresql": {
         "dataType": "decimal",
-        "dataPrecision": 10,
-        "dataScale": 2
+        "dataPrecision": 4,
+        "dataScale": 1
       }
     },
     "porcentagemJurosDia": {
@@ -30,13 +30,19 @@
       "required": true,
       "postgresql": {
         "dataType": "decimal",
-        "dataPrecision": 10,
-        "dataScale": 2
+        "dataPrecision": 4,
+        "dataScale": 1
       }
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "conta": {
+      "type": "hasMany",
+      "model": "Conta",
+      "foreignKey": "Regra"
+    }
+  },
   "acls": [],
   "methods": {}
 }

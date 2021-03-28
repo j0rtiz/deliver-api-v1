@@ -4,6 +4,7 @@ module.exports = (Conta) => {
   Conta.observe('before save', async (ctx) => verificarAtraso(ctx));
   Conta.valorCorrigido = async (conta) => conta.ValorCorrigido;
   Conta.diasAtraso = async (conta) => conta.DiasAtraso;
+  Conta.regra = async (conta) => conta.Regra;
 };
 
 async function verificarAtraso(ctx) {
@@ -11,34 +12,39 @@ async function verificarAtraso(ctx) {
   const { valorOriginal, dataVencimento, dataPagamento } = conta;
 
   const dia = 24 * 60 * 60 * 1000;
-  const diasAtraso = Math.ceil(Math.abs((dataVencimento - dataPagamento) / dia));
+  const diasAtraso = Math.ceil((dataPagamento - dataVencimento) / dia);
 
   if (diasAtraso > 0) {
-    conta.ValorCorrigido = await calcularValor(diasAtraso, valorOriginal);
+    const atraso = await definirAtraso(ctx.Model, diasAtraso, valorOriginal);
+
+    conta.ValorCorrigido = atraso.valorCorrigido;
     conta.DiasAtraso = diasAtraso;
+    conta.Regra = atraso.regra;
+  } else {
+    conta.ValorCorrigido = valorOriginal;
+    conta.DiasAtraso = 0;
+    conta.Regra = null;
   }
 }
 
-async function calcularValor(diasAtraso, valorOriginal) {
-  if (diasAtraso <= 3) {
-    const multa = calcularMulta(valorOriginal, 2);
-    const juros = calcularJuros(valorOriginal, 0.1, diasAtraso);
-    const valorCorrigido = valorOriginal + multa + juros;
+async function definirAtraso(model, diasAtraso, valorOriginal) {
+  const regras = await model.app.models.Atraso.find();
+  const atraso = { valorCorrigido: valorOriginal, regra: null };
 
-    return valorCorrigido;
-  } else if (diasAtraso > 3 && diasAtraso <= 5) {
-    const multa = calcularMulta(valorOriginal, 3);
-    const juros = calcularJuros(valorOriginal, 0.2, diasAtraso);
-    const valorCorrigido = valorOriginal + multa + juros;
+  regras.forEach((regra) => {
+    const { faixaAtraso, porcentagemMulta, porcentagemJurosDia } = regra;
+    const comAtraso = diasAtraso >= faixaAtraso[0] && (faixaAtraso[1] ? diasAtraso <= faixaAtraso[1] : true);
 
-    return valorCorrigido;
-  } else if (diasAtraso > 5) {
-    const multa = calcularMulta(valorOriginal, 5);
-    const juros = calcularJuros(valorOriginal, 0.3, diasAtraso);
-    const valorCorrigido = valorOriginal + multa + juros;
+    if (comAtraso) {
+      const multa = calcularMulta(valorOriginal, Number(porcentagemMulta));
+      const juros = calcularJuros(valorOriginal, Number(porcentagemJurosDia), diasAtraso);
 
-    return valorCorrigido;
-  }
+      atraso.valorCorrigido = valorOriginal + multa + juros;
+      atraso.regra = regra.id;
+    }
+  });
+
+  return atraso;
 }
 
 function calcularMulta(valorOriginal, porcentagem) {

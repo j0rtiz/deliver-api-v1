@@ -13,10 +13,12 @@
     "Computed": {
       "properties": {
         "valorCorrigido": "valorCorrigido",
-        "diasAtraso": "diasAtraso"
+        "diasAtraso": "diasAtraso",
+        "regra": "regra"
       }
     }
   },
+  "hidden": ["ValorCorrigido", "DiasAtraso", "Regra"],
   "properties": {
     "nome": {
       "type": "string",
@@ -55,9 +57,14 @@
       "default": null
     }
   },
-  "hidden": ["ValorCorrigido", "DiasAtraso"],
   "validations": [],
-  "relations": {},
+  "relations": {
+    "atraso": {
+      "type": "belongsTo",
+      "model": "Atraso",
+      "foreignKey": "Regra"
+    }
+  },
   "acls": [],
   "methods": {}
 }
