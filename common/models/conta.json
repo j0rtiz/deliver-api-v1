@@ -18,7 +18,22 @@
     },
     "valorOriginal": {
       "type": "number",
-      "required": true
+      "required": true,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
+    },
+    "valorCorrigido": {
+      "type": "number",
+      "required": false,
+      "default": null,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
     },
     "dataVencimento": {
       "type": "date",
@@ -27,6 +42,11 @@
     "dataPagamento": {
       "type": "date",
       "required": true
+    },
+    "diasAtraso": {
+      "type": "number",
+      "required": false,
+      "default": null
     }
   },
   "validations": [],
