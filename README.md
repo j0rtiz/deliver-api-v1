@@ -28,4 +28,4 @@ npm run start
 
 ### Customize the configuration
 
-See [Configuring](https://loopback.io/doc/en/lb3/index.html).
+See [Docs](https://loopback.io/doc/en/lb3/index.html).
