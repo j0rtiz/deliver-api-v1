@@ -44,11 +44,17 @@
     },
     "dataVencimento": {
       "type": "date",
-      "required": true
+      "required": true,
+      "postgresql": {
+        "dataType": "date"
+      }
     },
     "dataPagamento": {
       "type": "date",
-      "required": true
+      "required": true,
+      "postgresql": {
+        "dataType": "date"
+      }
     },
     "DiasAtraso": {
       "type": "number",
