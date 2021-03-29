@@ -1,11 +1,11 @@
 {
   "db": {
     "name": "db",
-    "host": "127.0.0.1",
+    "host": "ec2-54-235-108-217.compute-1.amazonaws.com",
     "port": 5432,
-    "database": "deliver",
-    "user": "root",
-    "password": "root",
+    "database": "dfgu2nmuh6u7b5",
+    "user": "uvmwwtuzxmrzus",
+    "password": "f39ae20f5baa5ed910d25cd7245d8dbcca7fe36351e2050cb32854ac97e07c97",
     "connector": "postgresql"
   }
 }
