@@ -1,11 +1,7 @@
 {
   "db": {
     "name": "db",
-    "host": "ec2-54-235-108-217.compute-1.amazonaws.com",
-    "port": 5432,
-    "database": "dfgu2nmuh6u7b5",
-    "user": "uvmwwtuzxmrzus",
-    "password": "f39ae20f5baa5ed910d25cd7245d8dbcca7fe36351e2050cb32854ac97e07c97",
-    "connector": "postgresql"
+    "connector": "postgresql",
+    "url": "postgres://uvmwwtuzxmrzus:f39ae20f5baa5ed910d25cd7245d8dbcca7fe36351e2050cb32854ac97e07c97@ec2-54-235-108-217.compute-1.amazonaws.com:5432/dfgu2nmuh6u7b5?sslmode=no-verify"
   }
 }
